@@ -124,7 +124,7 @@ $(document).ready(function () {
                     $("#RemontCount").val(cells.eq(3).text());
                     $("#RemontPrice").val(cells.eq(4).text());
                 })
-                row.remove();
+                
                 updateTotal();
             }
 

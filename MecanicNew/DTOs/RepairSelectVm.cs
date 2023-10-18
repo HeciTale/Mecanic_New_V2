@@ -12,5 +12,7 @@ namespace MecanicNew.DTOs
         public CarAddModel AddCar { get; set; }
         public CarAddStringModel AddCarString { get; set; }
 
+        public int RepairPageId { get; set; }
+
     }
 }

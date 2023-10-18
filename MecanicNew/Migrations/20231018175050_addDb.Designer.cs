@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MecanicNew.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231017181534_RepairChanges")]
-    partial class RepairChanges
+    [Migration("20231018175050_addDb")]
+    partial class addDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

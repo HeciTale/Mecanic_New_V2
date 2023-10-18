@@ -10,7 +10,7 @@
         public int RepairPrice { get; set; }
         public int RepairTotalPrice { get; set; }
 
-        public virtual RepairSelects RepairSelects { get; set; }
+      
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime? UpdatedDate { get; set; }
     }

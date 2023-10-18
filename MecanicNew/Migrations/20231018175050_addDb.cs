@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MecanicNew.Migrations
 {
     /// <inheritdoc />
-    public partial class NewDb : Migration
+    public partial class addDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -74,25 +74,6 @@ namespace MecanicNew.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Repair", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RepairDesciription",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RepairDesc = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RepairCount = table.Column<int>(type: "int", nullable: false),
-                    RepairPrice = table.Column<int>(type: "int", nullable: false),
-                    RepairTotalPrice = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RepairDesciription", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -207,6 +188,38 @@ namespace MecanicNew.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "RepairDesciription",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RepairId = table.Column<int>(type: "int", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RepairDesc = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RepairCount = table.Column<int>(type: "int", nullable: false),
+                    RepairPrice = table.Column<int>(type: "int", nullable: false),
+                    RepairTotalPrice = table.Column<int>(type: "int", nullable: false),
+                    RepairSelectsId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RepairDesciription", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RepairDesciription_RepairSelects_RepairSelectsId",
+                        column: x => x.RepairSelectsId,
+                        principalTable: "RepairSelects",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RepairDesciription_RepairSelectsId",
+                table: "RepairDesciription",
+                column: "RepairSelectsId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_RepairSelects_CarId",
                 table: "RepairSelects",
@@ -243,13 +256,13 @@ namespace MecanicNew.Migrations
                 name: "RepairDesciription");
 
             migrationBuilder.DropTable(
-                name: "RepairSelects");
-
-            migrationBuilder.DropTable(
                 name: "RepairTotalPrices");
 
             migrationBuilder.DropTable(
                 name: "Types");
+
+            migrationBuilder.DropTable(
+                name: "RepairSelects");
 
             migrationBuilder.DropTable(
                 name: "CarOwners");

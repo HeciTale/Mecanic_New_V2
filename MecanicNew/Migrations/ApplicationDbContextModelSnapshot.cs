@@ -155,9 +155,6 @@ namespace MecanicNew.Migrations
                     b.Property<int>("RepairPrice")
                         .HasColumnType("int");
 
-                    b.Property<int>("RepairSelectsId")
-                        .HasColumnType("int");
-
                     b.Property<int>("RepairTotalPrice")
                         .HasColumnType("int");
 
@@ -169,8 +166,6 @@ namespace MecanicNew.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RepairSelectsId");
 
                     b.ToTable("RepairDesciription");
                 });
@@ -319,17 +314,6 @@ namespace MecanicNew.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserRoles");
-                });
-
-            modelBuilder.Entity("MecanicNew.Model.RepairDesciription", b =>
-                {
-                    b.HasOne("MecanicNew.Model.RepairSelects", "RepairSelects")
-                        .WithMany()
-                        .HasForeignKey("RepairSelectsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("RepairSelects");
                 });
 
             modelBuilder.Entity("MecanicNew.Model.RepairSelects", b =>

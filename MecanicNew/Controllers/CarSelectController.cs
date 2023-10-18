@@ -104,8 +104,12 @@ namespace MecanicNew.Controllers
         [HttpPost]
         public IActionResult AddCarNumberSql(string CarName)
         {
-            Car car = new Car();
-            car.Name = CarName;
+            Car cars = new Car();
+            cars.Name = CarName;
+            cars.CreatedDate = DateTime.Now;
+
+            _context.Cars.Add(cars);
+            _context.SaveChanges();
 
             return RedirectToAction("Car", "CarSelect");
         }

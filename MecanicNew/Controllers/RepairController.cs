@@ -10,14 +10,16 @@ namespace MecanicNew.Controllers
     public class RepairController : Controller
     {
         private readonly ApplicationDbContext _context;
+        static int repairstatcId = 0;
 
         public RepairController(ApplicationDbContext context)
         {
             _context = context;
         }
-        public IActionResult Repair( int id)
+        public IActionResult Repair(int id)
         {
             TempData["CarSelectId"] = id;
+            repairstatcId = id;
             var type = _context.Types.Select(c => new TypeDto()
             {
                 TypeId = c.Id,
@@ -31,8 +33,10 @@ namespace MecanicNew.Controllers
         [HttpPost]
         public async Task<JsonResult> AddRemont(string remontType, string remontText, int remontCount, int remontPrice, int remontTotalPrice)
         {
+
+            //var RepairPageId = Convert.ToInt32(TempData["CarSelectId"].ToString());
             RepairDesciription repair = new RepairDesciription();
-            repair.RepairId = Convert.ToInt32(TempData["CarSelectId"].ToString());
+            repair.RepairId = repairstatcId ;
             repair.Type = remontType;
             repair.RepairDesc = remontText;
             repair.RepairCount = remontCount;
@@ -43,8 +47,8 @@ namespace MecanicNew.Controllers
 
 
 
-            _context.RepairDesciription.AddAsync(repair);
-            _context.SaveChangesAsync();
+             _context.RepairDesciription.Add(repair);
+             _context.SaveChanges();
 
             return Json(new
             {
@@ -52,6 +56,6 @@ namespace MecanicNew.Controllers
                 data = repair
             });
 
-    }
+        }
     }
 }

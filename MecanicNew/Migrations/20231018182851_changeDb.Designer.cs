@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MecanicNew.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231014111332_NewDb")]
-    partial class NewDb
+    [Migration("20231018182851_changeDb")]
+    partial class changeDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -151,6 +151,9 @@ namespace MecanicNew.Migrations
                     b.Property<string>("RepairDesc")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RepairId")
+                        .HasColumnType("int");
 
                     b.Property<int>("RepairPrice")
                         .HasColumnType("int");
