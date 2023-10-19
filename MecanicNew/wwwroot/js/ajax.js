@@ -174,6 +174,23 @@ $(document).ready(function () {
 
         $("#toplam").text(hepsininToplami);
     }
+    $("#total-price").on("click", function () {
+        var toplam = $("#toplam").text()
+        console.log(toplam);
+
+
+        $.ajax({
+            url: "/Repair/TotalPriceSql",
+            method: "post",
+            data: "json",
+            data: {
+                toplam: toplam
+            },
+            success: function () {
+                alert("Remont Ugurla Elave Olundu!")
+            }
+        })
+    })
 });
 
 

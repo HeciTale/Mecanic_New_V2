@@ -83,6 +83,7 @@ namespace MecanicNew.Controllers
             return RedirectToAction("Repair", "Repair", new { repairSelect.Id});
         }
 
+        //ADD Car Number
         [HttpGet]
         public IActionResult AddCarNumber()
         {
@@ -113,6 +114,50 @@ namespace MecanicNew.Controllers
 
             return RedirectToAction("Car", "CarSelect");
         }
+        //END Car Number Add
 
+        //ADD Car Owner 
+        [HttpGet]
+       public IActionResult AddCarOwner()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddCarOwnerSql(string CarOwner)
+        {
+            CarOwner carOwner = new CarOwner();
+            carOwner.Name = CarOwner;
+            carOwner.CreatedDate = DateTime.Now;
+
+            _context.CarOwners.Add(carOwner);
+            _context.SaveChanges();
+
+            return RedirectToAction("Car", "CarSelect");
+
+        }
+        //END Car Owner Add
+        //Add Driver
+        [HttpGet]
+        public IActionResult AddDriver()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddDriverSql(string DriverName)
+        {
+
+            Driver driver = new Driver();
+            driver.Name = DriverName;
+            driver.CreatedDate = DateTime.Now;
+
+            _context.Drivers.Add(driver);
+            _context.SaveChanges();
+
+            return RedirectToAction("Car", "CarSelect");
+
+        }
+        //End Add Driver
     }
+
+
 }

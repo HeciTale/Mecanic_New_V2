@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MecanicNew.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231018175050_addDb")]
-    partial class addDb
+    [Migration("20231019105209_changesRepairTotalPrice")]
+    partial class changesRepairTotalPrice
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -158,9 +158,6 @@ namespace MecanicNew.Migrations
                     b.Property<int>("RepairPrice")
                         .HasColumnType("int");
 
-                    b.Property<int>("RepairSelectsId")
-                        .HasColumnType("int");
-
                     b.Property<int>("RepairTotalPrice")
                         .HasColumnType("int");
 
@@ -172,8 +169,6 @@ namespace MecanicNew.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RepairSelectsId");
 
                     b.ToTable("RepairDesciription");
                 });
@@ -232,6 +227,9 @@ namespace MecanicNew.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RepairId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
@@ -322,17 +320,6 @@ namespace MecanicNew.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserRoles");
-                });
-
-            modelBuilder.Entity("MecanicNew.Model.RepairDesciription", b =>
-                {
-                    b.HasOne("MecanicNew.Model.RepairSelects", "RepairSelects")
-                        .WithMany()
-                        .HasForeignKey("RepairSelectsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("RepairSelects");
                 });
 
             modelBuilder.Entity("MecanicNew.Model.RepairSelects", b =>

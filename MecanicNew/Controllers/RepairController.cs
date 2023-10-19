@@ -57,5 +57,23 @@ namespace MecanicNew.Controllers
             });
 
         }
+
+        [HttpPost]
+        public JsonResult TotalPriceSql(int toplam)
+        {
+            RepairTotalPrices total = new RepairTotalPrices();
+            total.RepairId = repairstatcId;
+            total.Price = toplam;
+            total.CreatedDate = DateTime.Now;
+
+            _context.RepairTotalPrices.Add(total);
+            _context.SaveChanges();
+
+            return Json(new
+            {
+                status = HttpStatusCode.OK,
+                data = toplam
+            });
+        }
     }
 }

@@ -47,19 +47,23 @@
                             <option value="@CarNumber.CarId">@CarNumber.CarName</option>
                         }
                     </select>
-                    <a href="/CarSelect/AddCarNumber">Masin Elave Et</a>
+                    <a class="btn btn-primary" href="/CarSelect/AddCarNumber">Masin Elave Et</a>
                     <select id="CarId" name="AddCar.CarOwnerId">
                         @foreach (var CarOwner in Model.Owner)
                         {
                             <option value="@CarOwner.CarOwnerId">@CarOwner.CarOwnerName</option>
                         }
                     </select>
+                    <a class="btn btn-primary" href="/CarSelect/AddCarOwner">Masin Yiyesi Elave Et</a>
+
                     <select id="carId" name="AddCar.DriverId">
                         @foreach (var Driver in Model.Drivers)
                         {
                             <option   value="@Driver.DriverId">@Driver.DriverName</option>
                         }
                     </select>
+                    <a class="btn btn-primary" href="/CarSelect/AddDriver">Surucu Elave et Elave Et</a>
+
                     <select id="carId" name="AddCar.UserId">
                         @foreach (var Mecanic in Model.Users)
                         {

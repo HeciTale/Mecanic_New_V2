@@ -1,4 +1,4 @@
-﻿@model RepairSelectVm;
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,24 +19,25 @@
 
     <style>
         body {
-            padding: 30px!important;
+            padding: 30px !important;
         }
+
         #AddBtnId {
             margin-top: 30px;
         }
     </style>
-   
+
 </head>
 <body class="alt-menu sidebar-noneoverflow" data-spy="scroll" data-target="#navSection" data-offset="140">
 
-    
-    <div class="container">
- 
-        <form action="@Url.Action("AddCarNumberSql","CarSelect")" method="post">
-            <p style="color:black; font-size:2.4rem;" ; type="text"> Masin Nomresini yazin</p>
 
-            <input name="CarName" type="text" class="form-control" id="exampleFormControlInput1" value="">
-    <button id="AddBtnId"  class="btn btn-primary" >Elave Et</button>
+    <div class="container">
+
+        <form action="@Url.Action("AddCarOwnerSql","CarSelect")" method="post">
+            <p style="color:black; font-size:2.4rem;" ; type="text"> Masin Yiyesini yazin</p>
+
+            <input name="CarOwner" type="text" class="form-control" id="exampleFormControlInput1" value="">
+            <button id="AddBtnId" class="btn btn-primary">Elave Et</button>
         </form>
 
     </div>
@@ -63,5 +64,5 @@
     <script src="~/plugins/select2/select2.min.js"></script>
     <script src="~/plugins/select2/custom-select2.js"></script>
     <!--  BEGIN CUSTOM SCRIPTS FILE  -->
-   </body>
+</body>
 </html>

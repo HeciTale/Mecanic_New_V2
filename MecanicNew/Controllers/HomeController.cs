@@ -19,11 +19,17 @@ namespace MecanicNew.Controllers
 
             var Repairs = _context.RepairSelects.Select(c => new RepairDto
             {
-                CarNumber = c.CarId.ToString(),
+                CarNumber = c.Car.Name.ToString(),
+                CarOwner = c.Owner.Name.ToString(),
+                Mecanic = c.User.Name,
+                DateTime = c.AddTime,
+                
 
 
+                
             }).ToList();
             
+
             return View(Repairs);
         }
     }
