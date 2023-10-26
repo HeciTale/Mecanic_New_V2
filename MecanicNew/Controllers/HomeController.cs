@@ -2,6 +2,7 @@
 using MecanicNew.Model;
 using MecanicNew.SqlData;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 namespace MecanicNew.Controllers
@@ -17,20 +18,26 @@ namespace MecanicNew.Controllers
         public IActionResult Index()
         {
 
-            var Repairs = _context.RepairSelects.Select(c => new RepairDto
+            var Repairs = _context.RepairSelects
+                .Select(c => new RepairDto
             {
                 CarNumber = c.Car.Name.ToString(),
                 CarOwner = c.Owner.Name.ToString(),
                 Mecanic = c.User.Name,
                 DateTime = c.AddTime,
-                
-
-
-                
+                  
             }).ToList();
-            
 
-            return View(Repairs);
+            var TotalPrice = _context.RepairTotalPrices.Select(c => new PriceDto
+            {
+                Price = c.Price,
+            }).ToList();
+
+            IndexPageVm vm = new IndexPageVm();
+            vm.Repair = Repairs;
+            vm.Price = TotalPrice;
+
+            return View(vm);
         }
     }
 }
