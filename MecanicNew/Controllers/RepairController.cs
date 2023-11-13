@@ -3,6 +3,7 @@ using MecanicNew.Model;
 using MecanicNew.Request;
 using MecanicNew.SqlData;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Net;
 
 namespace MecanicNew.Controllers
@@ -42,6 +43,7 @@ namespace MecanicNew.Controllers
             repair.RepairCount = remontCount;
             repair.RepairPrice = remontPrice;
             repair.RepairTotalPrice = remontTotalPrice;
+            var price =await _context.RepairTotalPrices.FirstOrDefaultAsync(c => c.RepairId == repairstatcId);
 
 
 
@@ -68,12 +70,17 @@ namespace MecanicNew.Controllers
 
             _context.RepairTotalPrices.Add(total);
             _context.SaveChanges();
-
             return Json(new
             {
                 status = HttpStatusCode.OK,
                 data = toplam
             });
         }
+        public IActionResult ReturnHome(bool data)
+        {
+            data = true;
+            return RedirectToAction("Index","Home",new {data});
+        }
+       
     }
 }

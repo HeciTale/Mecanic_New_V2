@@ -37,7 +37,7 @@
 
         <div class="dropdown">
             <label for="painting-type">Ne olacaqini secin:</label>
-            <form action="@Url.Action("AddCar","CarSelect")" method="post" >
+            <form action="@Url.Action("AddCar","CarSelect")" method="post">
                 <div class="CarSelecters">
 
 
@@ -47,22 +47,36 @@
                             <option value="@CarNumber.CarId">@CarNumber.CarName</option>
                         }
                     </select>
-                    <a class="btn btn-primary" href="/CarSelect/AddCarNumber">Masin Elave Et</a>
-                    <select id="CarId" name="AddCar.CarOwnerId">
+                    <a class="btn btn-primary" href="/CarSelect/AddCarNumber" style="
+    position: absolute;
+    left: 40%;
+    top: 45px;
+">Masin Elave Et</a>
+                    <select id="CarId" name="AddCar.CarOwnerId" style="
+    height: 75px;
+">
                         @foreach (var CarOwner in Model.Owner)
                         {
                             <option value="@CarOwner.CarOwnerId">@CarOwner.CarOwnerName</option>
                         }
                     </select>
-                    <a class="btn btn-primary" href="/CarSelect/AddCarOwner">Masin Yiyesi Elave Et</a>
+                    <a class="btn btn-primary" href="/CarSelect/AddCarOwner" style="
+    position: absolute;
+    left: 40%;
+    top: 30%;
+">Masin Yiyesi Elave Et</a>
 
                     <select id="carId" name="AddCar.DriverId">
                         @foreach (var Driver in Model.Drivers)
                         {
-                            <option   value="@Driver.DriverId">@Driver.DriverName</option>
+                            <option value="@Driver.DriverId">@Driver.DriverName</option>
                         }
                     </select>
-                    <a class="btn btn-primary" href="/CarSelect/AddDriver">Surucu Elave et Elave Et</a>
+                    <a class="btn btn-primary" href="/CarSelect/AddDriver" style="
+    position: absolute;
+    left: 40%;
+    top: 51%;
+">Surucu Elave et Elave Et</a>
 
                     <select id="carId" name="AddCar.UserId">
                         @foreach (var Mecanic in Model.Users)
@@ -88,7 +102,7 @@
         <script>
             $(document).ready(function () {
                 App.init();
-                
+
             });
 
         </script>

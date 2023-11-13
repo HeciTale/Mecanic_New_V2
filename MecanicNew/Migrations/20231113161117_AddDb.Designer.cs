@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MecanicNew.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231019074643_AddDbWorkComp")]
-    partial class AddDbWorkComp
+    [Migration("20231113161117_AddDb")]
+    partial class AddDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -227,6 +227,9 @@ namespace MecanicNew.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RepairId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")

@@ -15,9 +15,9 @@ namespace MecanicNew.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public IActionResult Index(bool data)
         {
-
+            bool check = data;
             var Repairs = _context.RepairSelects
                 .Select(c => new RepairDto
             {
@@ -27,15 +27,14 @@ namespace MecanicNew.Controllers
                 DateTime = c.AddTime,
                   
             }).ToList();
-
-            var TotalPrice = _context.RepairTotalPrices.Select(c => new PriceDto
-            {
-                Price = c.Price,
-            }).ToList();
-
             IndexPageVm vm = new IndexPageVm();
             vm.Repair = Repairs;
-            vm.Price = TotalPrice;
+            if(check == true)
+            {
+            var ri =_context.RepairSelects.LastOrDefault().Id;
+            var TotalPrice = _context.RepairTotalPrices.Where(x=>x.RepairId == ri).FirstOrDefault();
+            vm.Price = TotalPrice.Price;
+            }
 
             return View(vm);
         }
